@@ -17,7 +17,8 @@ use App\Http\Controllers\Auth\AuthController;
 */
 
 Route::get('/', function () {
-    return "Home";
+    // return "Home";
+    return view("index");
 });
 
 Route::get('/admin/login', [AuthController::class, 'adminLogin'])->name('admin.login');
