@@ -1,0 +1,269 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "\n\nHeader -> api_key :  \n\n",
+    "version": "1.0.0",
+    "title": "E-commerce"
+  },
+  "host": "127.0.0.1:8000",
+  "basePath": "/api",
+  "tags": [
+    {
+      "name": "User",
+      "description": "All User Operations"
+    }
+
+  ],
+  "paths": {
+    "/auth/register": {
+      "post": {
+        "tags": [
+          "User"
+        ],
+        "summary": "User Register",
+        "operationId": "Register",
+        "produces": [
+          "application/json"
+        ],
+        "security": [
+          {
+            "APIKeyHeader": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "name",
+            "in": "formData",
+            "description": "Enter Name",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "email",
+            "in": "formData",
+            "description": "Enter Email",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "password",
+            "in": "formData",
+            "description": "password",
+            "required": true,
+            "type": "string"
+          }
+
+        ],
+        "responses": {
+          "200": {
+            "description": "Data"
+          }
+        }
+      }
+    },
+
+    "/auth/login": {
+      "post": {
+        "tags": [
+          "User"
+        ],
+        "summary": "User Login",
+        "operationId": "Login",
+        "produces": [
+          "application/json"
+        ],
+        "security": [
+          {
+            "APIKeyHeader": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "email",
+            "in": "formData",
+            "description": "Enter Email",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "password",
+            "in": "formData",
+            "description": "password",
+            "required": true,
+            "type": "string"
+          }
+
+        ],
+        "responses": {
+          "200": {
+            "description": "Data"
+          }
+        }
+      }
+    },
+
+    "/user/showUser": {
+      "post": {
+        "tags": [
+          "User"
+        ],
+        "summary": "User Details",
+        "operationId": "ShowUser",
+        "produces": [
+          "application/json"
+        ],
+        "security": [
+          {
+            "APIKeyHeader": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "Enter bearer token",
+            "required": true,
+            "type": "string"
+          }
+
+        ],
+        "responses": {
+          "200": {
+            "description": "Data"
+          }
+        }
+      }
+    },
+    "/user/update": {
+      "post": {
+        "tags": ["User"],
+        "summary": "User Update",
+        "operationId": "User Update",
+        "consumes": ["multipart/form-data"],
+        "produces": ["application/json"],
+        "security": [
+          { "APIKeyHeader": [] }
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "Bearer token",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "name",
+            "in": "formData",
+            "description": "Enter Name",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "email",
+            "in": "formData",
+            "description": "Enter Email",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "phone",
+            "in": "formData",
+            "description": "Enter phone no",
+            "required": true,
+            "type": "number"
+          },
+          {
+            "name": "address",
+            "in": "formData",
+            "description": "Enter address",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x_link",
+            "in": "formData",
+            "type": "string"
+          },
+          {
+            "name": "facebook_link",
+            "in": "formData",
+            "type": "string"
+          },
+          {
+            "name": "insta_link",
+            "in": "formData",
+            "type": "string"
+          },
+          {
+            "name": "dp",
+            "in": "formData",
+            "description": "Profile picture",
+            "type": "file"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Data"
+          }
+        }
+      }
+    },
+    "/user/logout": {
+      "post": {
+        "tags": ["User"],
+        "summary": "Logout User",
+        "description": "Logs out the current authenticated user",
+        "operationId": "logoutUser",
+        "security": [
+          { "APIKeyHeader": [] }
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "Bearer token",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Data"
+          }
+        }
+      }
+    }
+
+
+
+
+  },
+  "securityDefinitions": {
+    "APIKeyHeader": {
+      "type": "apiKey",
+      "in": "header",
+      "name": "api-key"
+    }
+  },
+  "definitions": {
+    "user": {
+      "type": "object",
+      "properties": {
+        "user_id": {
+          "type": "number"
+        },
+        "name": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  "schemes": [
+    "http",
+    "https"
+  ]
+}
